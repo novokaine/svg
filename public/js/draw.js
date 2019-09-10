@@ -84,13 +84,22 @@ var svg = d3.select("svg"),
             .attr("transform", "translate(0," + height2 + ")")
             .call(xAxis2);
 
-        const brush = context.append("g")
-            .attr("class", "brush");
+        context.append("g").attr("class", "brush");
+        context.select('.brush')
+            .append('g')
+            .attr('class', 'handle handle--w')
+            .attr('id', 'handle')
+            .append('polygon')
+            .attr('points', '0 0 0 12.8274 2 15 4 12.8274 4 0')
 
-            brush.append("use").attr('class', 'handle  handle--e');
-            brush.append("use").attr('class', 'handle  handle--w');
+        // brush.append("use").attr('class', 'handle  handle--e');
 
-            context.select('.brush')
+        context.append('g')
+            .attr('class', 'handle handle--e')
+            .append("use")
+            .attr('href', '#handle');
+
+        context.select('.brush')
             .call(brush)
             .call(brush.move, x.range());
 
@@ -100,6 +109,8 @@ var svg = d3.select("svg"),
             .attr("height", height)
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .call(zoom);
+
+        context.selectAll('rect.handle').remove();
     });
 
     function brushed() {

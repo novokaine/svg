@@ -27,7 +27,7 @@ function readFile(path) {
     });
 }
 
-app.use('/static', express.static('public'))
+app.use('/', express.static('public'))
 app.get('/csv', (req, res) => {
     res.set('Content-type', 'text/plain')
     console.log(readFile(inputFilePath))

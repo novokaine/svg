@@ -4290,6 +4290,7 @@ function brush$1(dim) {
       touchending;
 
   function brush(group) {
+  
     var overlay = group
         .property("__brush", initialize)
       .selectAll(".overlay")
@@ -6987,6 +6988,7 @@ function areaPoint(lambda, phi) {
 
 function area(object) {
   areaSum.reset();
+  debugger;
   geoStream(object, areaStream);
   return areaSum * 2;
 }

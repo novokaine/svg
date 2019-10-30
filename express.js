@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
-const port = 3000;
+const port = 5000;
 const inputFilePath = './data/sp500.csv';
+const brushCsvFile = './data/brush.csv'
 const cors = require('cors')
 const csv = require('csv-parser');
 const fs = require('fs');
@@ -32,6 +33,13 @@ app.get('/csv', (req, res) => {
     res.set('Content-type', 'text/plain')
     console.log(readFile(inputFilePath))
     readFile(inputFilePath)
+        .then(data => res.send(data))
+    // res.send(readFile(inputFilePath))
+})
+app.get('/brush', (req, res) => {
+    res.set('Content-type', 'text/plain')
+    console.log(readFile(brushCsvFile))
+    readFile(brushCsvFile)
         .then(data => res.send(data))
     // res.send(readFile(inputFilePath))
 })
